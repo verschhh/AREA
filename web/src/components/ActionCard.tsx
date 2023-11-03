@@ -23,8 +23,6 @@ export interface ActionCardProps {
 }
 
 export const ActionCard: React.FC<ActionCardProps> = ({ data }) => {
-  console.log("data =", data[0].forecast.name);
-
   return (
     <div>
       <h2>Weather Information</h2>

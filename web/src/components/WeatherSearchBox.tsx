@@ -149,12 +149,12 @@ const WeatherSearchBox: React.FC = () => {
                                 <input type="text" value={reactionMessage} onChange={(e) => setReactionMessage(e.target.value)} className="w-full p-2 border rounded-md" />
                             </div>
                         )}
-                        {/* {reactionType === 'Meal' &&(
+                        {reactionType === 'Meal' &&(
                             <div>
-                                <label className="font-medium text-lg mb-4 block">Choose your mode</label>
-                                <select value={reactionMessage} onChange={(e) => setReactionMessage(e.target.value)}></select>
+                                <label className="font-medium text-lg mb-4 block">Type a dish</label>
+                                <input type="text" value={reactionMessage} onChange={(e) => setReactionMessage(e.target.value)} className="w-full p-2 border rounded-md"/>
                             </div>
-                        )} */}
+                        )}
                     </div>
                 </div>
                 <button onClick={handleSubmit} className="bg-teal-600 text-white px-8 py-2 rounded-lg shadow-lg font-medium hover:bg-teal-700 active:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300 w-full">Send Alert</button>
