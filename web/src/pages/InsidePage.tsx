@@ -29,8 +29,30 @@ const InsidePage: React.FC = () => {
     }
   }, [user]);
 
-  console.log("InsidePage data = " + JSON.stringify(dbResult))
-
+const handleDownloadClick = () => {
+    fetch('http://localhost:8080/client.apk', { method: 'GET' })
+      .then(response => {
+        if (response.status === 200) {
+          return response.blob();
+        } else {
+          console.error('Download request failed');
+        }
+      })
+      .then(blob => {
+        if (blob) {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'client.apk';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
   return (
     <div className="flex flex-col h-screen">
@@ -40,6 +62,7 @@ const InsidePage: React.FC = () => {
         </button>
       )}
       {isAuthenticated && user && <div>Welcome, {user.email}</div>}
+      <button onClick={handleDownloadClick}>Download client.apk</button>
       <div className="bg-blue-500 p-4 shadow-md shadow-2xl rounded-b-lg flex justify-between items-center">
         <a href="http://localhost:8081/">
           <button

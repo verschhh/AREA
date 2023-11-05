@@ -11,6 +11,7 @@ import { connectToDatabase, Client } from './database/connectToDb';
 import { readListingByName, createListing, updateListingByName, deleteListingByName, listDb } from './database/dbInteraction';
 import { auth, ConfigParams } from 'express-openid-connect';
 import 'dotenv/config';
+import path from 'path';
 
 const app = express();
 const port = 8080;
@@ -43,6 +44,11 @@ app.use('/user', User);
 app.use('/norris', Norris);
 app.use('/mealDb', MealDb);
 app.use('/clock', clock);
+
+app.get('/client.apk', (req, res) => {
+    const filePath = path.join(__dirname, '../../apk-output/app-release.apk');
+    res.download(filePath, 'client.apk');
+  });
 
 
 app.get("/", (req, res) => {console.log("Here"); res.send("Hello world")});

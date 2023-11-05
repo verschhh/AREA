@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-import { Client } from './connectToDb';
 
 export async function createListing(Client: typeof MongoClient, newListing: any) {
   const result = await Client
