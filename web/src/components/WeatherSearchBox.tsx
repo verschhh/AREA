@@ -26,6 +26,8 @@ const WeatherSearchBox: React.FC = () => {
     const [reactionMessage, setReactionMessage] = useState('');
     const [selectedService, setServiceType] = useState<string | null>(null);
 
+    const [showBox, setShowBox] = useState(false);
+
     const handleSubmit = async () => {
         const intervalValueMap: { [key in 'Greater Than' | 'Less Than' | 'Equals']: '>' | '<' | '=' } = {
             'Greater Than': '>',
@@ -69,6 +71,31 @@ const WeatherSearchBox: React.FC = () => {
                 </a>
                 <h2 className="text-3xl font-bold text-center mb-8 text-teal-800">Setup Action</h2>
                 <div className="grid grid-cols-2 gap-6">
+
+
+                    <div className="col-span-2 text-right">
+                        <button
+                            onClick={() => setShowBox(!showBox)}
+                            className="bg-teal-600 text-white px-2 py-1 rounded-full shadow-lg font-medium hover:bg-teal-700 active:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300"
+                        >
+                            Need Help
+                        </button>
+                    </div>
+
+                    {showBox && (
+                        <div className="col-span-2">
+                            <div className="bg-gray-200 p-4 rounded-lg">
+                                <p><h2>Reaction:</h2><br />
+                                Discord: send a message to Discord <br />
+                                Chuck Norris: Choose a joke category to send a joke on Discord <br />
+                                Clock: Type a city to get the hours of the city send on Discord <br />
+                                Meal: Type nothing to get random receipe or type filter: + name of ingredient to get a list of dishes with it. 
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+
                     <div className="col-span-2">
                         <button
                             onClick={() => setServiceType('Weather')}
